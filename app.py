@@ -8,6 +8,10 @@ from eligibilitycheck import eligibilitycheck
 from futurepricing import generate_price_df
 from pandas_datareader import data as web
 from datetime import datetime as dt
+import os
+
+cf_port = os.getenv("PORT")
+
 
 # Set up global variables
 stockpricedf = 0
@@ -121,5 +125,10 @@ def generate_future_price_table(selected_dropdown_value,discountrate,marginrate,
     
 
 
+#if __name__ == '__main__':
+#    app.run_server(debug=True)
 if __name__ == '__main__':
-    app.run_server(debug=True)
+   if cf_port is None:
+       app.run_server(host='0.0.0.0', port=5000)
+   else:
+       app.run_server(host='0.0.0.0', port=int(cf_port))  
