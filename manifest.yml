@@ -1,0 +1,4 @@
+---
+applications:
+- name: value-investing
+  memory: 1024MB
